@@ -1,0 +1,36 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
+const { id } = Astro.params;
+// const purchaseDetails = await fetchPurchaseDetailsFromGiftUp(id);
+
+// Mock purchase details
+const purchaseDetails = {
+  giftCardName: "Spotify",
+  amountSpent: 99,
+  remainingBalance: 50,
+  validUntil: "2022-12-31",
+};
+
+export function getStaticPaths() {
+  return [{ params: { id: "1" } }];
+}
+---
+
+<Layout title="Purchase Details - Swedish Gift Cards">
+  <main class="container mx-auto px-4 py-8">
+    <h1 class="text-4xl font-bold mb-8">Purchase Details</h1>
+    <Card>
+      <CardHeader>
+        <CardTitle>Gift Card: {purchaseDetails.giftCardName}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p>Purchase ID: {id}</p>
+        <p>Amount Spent: {purchaseDetails.amountSpent} SEK</p>
+        <p>Remaining Balance: {purchaseDetails.remainingBalance} SEK</p>
+        <p>Valid Until: {purchaseDetails.validUntil}</p>
+      </CardContent>
+    </Card>
+  </main>
+</Layout>

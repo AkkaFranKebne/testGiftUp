@@ -1,0 +1,48 @@
+---
+import Layout from "../layouts/Layout.astro";
+import GiftCardList from "../components/GiftCardList";
+import SearchForm from "../components/SearchForm";
+
+import "../global.css";
+
+// Fetch gift cards from Medusa
+//const giftCards = await fetchGiftCardsFromMedusa();
+
+// Mock gift card data
+const giftCards = [
+  {
+    id: "1",
+    name: "Spotify",
+    price: 99,
+    image: "https://placehold.co/600x400",
+  },
+  {
+    id: "2",
+    name: "Netflix",
+    price: 129,
+    image: "https://placehold.co/600x400",
+  },
+  {
+    id: "3",
+    name: "Amazon",
+    price: 200,
+    image: "https://placehold.co/600x400",
+  },
+];
+
+export function getStaticPaths() {
+  return [
+    { params: { id: "1" } },
+    { params: { id: "2" } },
+    { params: { id: "3" } },
+  ];
+}
+---
+
+<Layout title="Swedish Gift Cards">
+  <main class="container mx-auto px-4 py-8">
+    <h1 class="text-4xl font-bold mb-8">Swedish Gift Cards</h1>
+    <SearchForm client:load />
+    <GiftCardList giftCards={giftCards} client:load />
+  </main>
+</Layout>

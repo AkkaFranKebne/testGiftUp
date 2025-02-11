@@ -1,0 +1,26 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CheckoutForm from "../../components/CheckoutForm";
+
+const { id } = Astro.params;
+// const giftCard = await fetchGiftCardFromMedusa(id);
+
+// Mock gift card data
+const giftCard = {
+  id: "1",
+  name: "Spotify",
+  price: 99,
+  image: "https://placehold.co/600x400",
+};
+
+export function getStaticPaths() {
+  return [{ params: { id: "1" } }];
+}
+---
+
+<Layout title="Checkout - Swedish Gift Cards">
+  <main class="container mx-auto px-4 py-8">
+    <h1 class="text-4xl font-bold mb-8">Checkout</h1>
+    <CheckoutForm giftCard={giftCard} client:load />
+  </main>
+</Layout>
